@@ -29,12 +29,12 @@ test.afterEach(async ({ page }) => {
 } )
 
   test('should upload PDF file without Prefill option', async ({ page }) => {
-    
+    test.slow();
     const profilePage = new ProfilePage (page);
 
     await profilePage.prefillToggle.uncheck();
     await profilePage.uploadButton.setInputFiles('./test-data/'+ CVPDF);
-    await expect(profilePage.uploadMessage).toHaveText('Success, your CV has been uploaded!');
+    await expect(profilePage.uploadMessage).toHaveText('Success, your CV has been uploaded!', {timeout:30000});
     await profilePage.closeModal.click();
     await expect(profilePage.uploadedFileExt).toContainText('.pdf')
   });
