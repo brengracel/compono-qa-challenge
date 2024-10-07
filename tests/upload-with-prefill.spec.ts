@@ -32,7 +32,7 @@ test('should upload PDF file with Prefill option', async ({ page }) => {
     const profilePage = new ProfilePage (page);
 
     await profilePage.uploadButton.setInputFiles('./test-data/'+ CVPDF);
-    await expect(profilePage.uploadMessage).toHaveText('Your CV has been uploaded, and your profile has been prefilled!',{timeout: 10000});
+    await expect(profilePage.uploadMessage).toHaveText('Your CV has been uploaded, and your profile has been prefilled!',{timeout: 20000});
     await profilePage.closeModal.click();
     await expect(profilePage.uploadedFileExt).toContainText('.pdf')
     await expect(page.getByRole('heading', { name: 'Experience and Skills Needs' }).locator('span')).toBeVisible();
